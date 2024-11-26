@@ -22,6 +22,7 @@ using Playgama.Modules.Device;
 using Playgama.Modules.Game;
 using Playgama.Modules.Leaderboard;
 using Playgama.Modules.Payments;
+using Playgama.Modules.Achievements;
 using Playgama.Modules.Platform;
 using Playgama.Modules.Player;
 using Playgama.Modules.RemoteConfig;
@@ -41,6 +42,7 @@ namespace Playgama
         public static DeviceModule device => instance._device; 
         public static LeaderboardModule leaderboard => instance._leaderboard; 
         public static PaymentsModule payments => instance._payments; 
+        public static AchievementsModule achievements => instance._achievements; 
         public static RemoteConfigModule remoteConfig => instance._remoteConfig; 
 
         private AdvertisementModule _advertisement;
@@ -52,6 +54,7 @@ namespace Playgama
         private DeviceModule _device;
         private LeaderboardModule _leaderboard;
         private PaymentsModule _payments;
+        private AchievementsModule _achievements;
         private RemoteConfigModule _remoteConfig;
 
         protected override void Awake()

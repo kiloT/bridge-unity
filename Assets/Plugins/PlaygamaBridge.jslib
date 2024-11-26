@@ -397,6 +397,42 @@ mergeInto(LibraryManager.library, {
     
     PlaygamaBridgeRemoteConfigGet: function(options) {
         window.remoteConfigGet(UTF8ToString(options))
-    }
+    },
+
+    PlaygamaBridgeIsAchievementsSupported: function() {
+        var isAchievementsSupported = window.getIsAchievementsSupported()
+        var bufferSize = lengthBytesUTF8(isAchievementsSupported) + 1
+        var buffer = _malloc(bufferSize)
+        stringToUTF8(isAchievementsSupported, buffer, bufferSize)
+        return buffer
+    },
+
+    PlaygamaBridgeIsGetAchievementsListSupported: function() {
+        var isGetAchievementsListSupported = window.getIsGetAchievementsListSupported()
+        var bufferSize = lengthBytesUTF8(isGetAchievementsListSupported) + 1
+        var buffer = _malloc(bufferSize)
+        stringToUTF8(isGetAchievementsListSupported, buffer, bufferSize)
+        return buffer
+    },
+
+    PlaygamaBridgeIsAchievementsNativePopupSupported: function() {
+        var isAchievementsNativePopupSupported = window.getIsAchievementsNativePopupSupported()
+        var bufferSize = lengthBytesUTF8(isAchievementsNativePopupSupported) + 1
+        var buffer = _malloc(bufferSize)
+        stringToUTF8(isAchievementsNativePopupSupported, buffer, bufferSize)
+        return buffer
+    },
+    
+    PlaygamaBridgeAchievementsUnlock: function(options) {
+        window.achievementsUnlock(UTF8ToString(options))
+    },
+
+    PlaygamaBridgeAchievementsShowNativePopup: function() {
+        window.achievementsShowNativePopup()
+    },
+        
+    PlaygamaBridgeAchievementsGetList: function() {
+        window.achievementsGetList()
+    },
 
 });
