@@ -15808,7 +15808,6 @@ GameObject:
   - component: {fileID: 1578828789}
   - component: {fileID: 1578828791}
   - component: {fileID: 1578828790}
-  - component: {fileID: 1578828792}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -15886,27 +15885,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &1578828792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1578828788}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a731975036664ef984b7b48f709a297, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isSupported: {fileID: 0}
-  _isGetListSupported: {fileID: 0}
-  _isNativePopupSupported: {fileID: 0}
-  _idInput: {fileID: 0}
-  _nameInput: {fileID: 0}
-  _unlockButton: {fileID: 0}
-  _getListButton: {fileID: 0}
-  _showNativePopupButton: {fileID: 0}
-  _overlay: {fileID: 0}
 --- !u!1 &1579558050
 GameObject:
   m_ObjectHideFlags: 0

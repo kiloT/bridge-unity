@@ -71,6 +71,7 @@ namespace Playgama
             _leaderboard = gameObject.AddComponent<LeaderboardModule>();
             _payments = gameObject.AddComponent<PaymentsModule>();
             _remoteConfig = gameObject.AddComponent<RemoteConfigModule>();
+            _achievements = gameObject.AddComponent<AchievementsModule>();
         }
     }
 }
