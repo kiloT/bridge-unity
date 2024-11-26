@@ -133,8 +133,8 @@ namespace Playgama.Modules.Achievements
         private void OnAchievementsShowNativePopupCompleted(string result)
         {
             var isSuccess = result == "true";
-            _unlockCallback?.Invoke(isSuccess);
-            _unlockCallback = null;
+            _showNativePopupCallback?.Invoke(isSuccess);
+            _showNativePopupCallback = null;
         }
 
         private void OnAchievementsGetListCompletedSuccess(string result)
