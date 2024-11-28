@@ -44,7 +44,11 @@ namespace Examples
                     break;
             }
             
-            Bridge.achievements.Unlock(options, _ => { _overlay.SetActive(false); });
+            Bridge.achievements.Unlock(options, (success) =>
+            {
+                Debug.Log($"OnUnlockCompleted, success: {success}");
+                _overlay.SetActive(false);
+            });
         }
         
         private void OnShowNativePopupButtonClicked()
