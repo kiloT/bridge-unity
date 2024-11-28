@@ -159,11 +159,16 @@
                         gameId: '{{{ GAME_DISTRIBUTION_GAME_ID }}}'
                     },
 #endif
-#if Y8_GAME_ID && Y8_GAME_ID !== '-' && Y8_GAME_ID !== ' ' && Y8_HOST_ID && Y8_HOST_ID !== '-' && Y8_HOST_ID !== ' ' && Y8_ADSENSE_ID && Y8_ADSENSE_ID !== '-' && Y8_ADSENSE_ID !== ' '
+#if Y8_GAME_ID && Y8_GAME_ID !== '-' && Y8_GAME_ID !== ' ' && Y8_ADSENSE_ID && Y8_ADSENSE_ID !== '-' && Y8_ADSENSE_ID !== ' '
                     'y8': {
                         gameId: '{{{ Y8_GAME_ID }}}',
-                        hostId: '{{{ Y8_HOST_ID }}}',
                         adsenseId: '{{{ Y8_ADSENSE_ID }}}',
+#if Y8_HOST_ID && Y8_HOST_ID !== '-' && Y8_HOST_ID !== ' '
+                        hostId: '{{{ Y8_HOST_ID }}}',
+#endif
+#if Y8_CHANNEL_ID && Y8_CHANNEL_ID !== '-' && Y8_CHANNEL_ID !== ' '
+                        channelId: '{{{ Y8_CHANNEL_ID }}}',
+#endif
                     },
 #endif
 #if LAGGED_DEV_ID && LAGGED_DEV_ID !== '-' && LAGGED_DEV_ID !== ' ' && LAGGED_PUBLISHER_ID && LAGGED_PUBLISHER_ID !== '-' && LAGGED_PUBLISHER_ID !== ' '
