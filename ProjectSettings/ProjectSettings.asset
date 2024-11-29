@@ -529,7 +529,6 @@ PlayerSettings:
     PROGRESS_BAR_FILL_COLOR: '-'
     Y8_GAME_ID: '-'
     Y8_ADSENSE_ID: '-'
-    Y8_HOST_ID: '-'
     Y8_CHANNEL_ID: '-'
     LAGGED_DEV_ID: '-'
     LAGGED_PUBLISHER_ID: '-'
