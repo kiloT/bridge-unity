@@ -720,7 +720,7 @@
                         sendMessageToUnity('OnPaymentsPurchaseCompleted', 'true')
                     })
                     .catch(error => {
-                        sendMessageToUnity('OnPaymentsPurchaseCompleted', 'false')
+                        sendMessageToUnity('OnPaymentsPurchaseFailed', '')
                     })
             }
 
