@@ -832,8 +832,12 @@
                     })
             }
 
-            window.achievementsGetList = function() {
-                bridge.achievements.getList()
+            window.achievementsGetList = function(options) {
+                if (options) {
+                    options = JSON.parse(options)
+                }
+
+                bridge.achievements.getList(options)
                     .then(data => {
                         if (data) {
                             if (typeof data !== 'string') {

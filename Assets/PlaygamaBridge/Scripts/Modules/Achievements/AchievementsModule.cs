@@ -62,7 +62,7 @@ namespace Playgama.Modules.Achievements
         private static extern void PlaygamaBridgeAchievementsUnlock(string options);
 
         [DllImport("__Internal")]
-        private static extern void PlaygamaBridgeAchievementsGetList();
+        private static extern void PlaygamaBridgeAchievementsGetList(string options);
         
         [DllImport("__Internal")]
         private static extern void PlaygamaBridgeAchievementsShowNativePopup();
@@ -94,12 +94,12 @@ namespace Playgama.Modules.Achievements
 #endif
         }
         
-        public void GetList(Action<bool, List<Dictionary<string, string>>> onComplete = null)
+        public void GetList(Dictionary<string, object> options, Action<bool, List<Dictionary<string, string>>> onComplete = null)
         {
             _getListCallback = onComplete;
 
 #if !UNITY_EDITOR
-            PlaygamaBridgeAchievementsGetList();
+            PlaygamaBridgeAchievementsGetList(options.ToJson());
 #else
             OnAchievementsGetListCompletedFailed();
 #endif

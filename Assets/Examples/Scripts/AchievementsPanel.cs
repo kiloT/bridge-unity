@@ -60,8 +60,10 @@ namespace Examples
         private void OnGetListButtonClicked()
         {
             _overlay.SetActive(true);
+            
+            var options = new Dictionary<string, object>();
         
-            Bridge.achievements.GetList((success, list) =>
+            Bridge.achievements.GetList(options, (success, list) =>
             {
                 Debug.Log($"OnGetListCompleted, success: {success}, items:");
                 

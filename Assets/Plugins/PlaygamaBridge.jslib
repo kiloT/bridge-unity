@@ -431,8 +431,8 @@ mergeInto(LibraryManager.library, {
         window.achievementsShowNativePopup()
     },
         
-    PlaygamaBridgeAchievementsGetList: function() {
-        window.achievementsGetList()
+    PlaygamaBridgeAchievementsGetList: function(options) {
+        window.achievementsGetList(UTF8ToString(options))
     },
 
 });
