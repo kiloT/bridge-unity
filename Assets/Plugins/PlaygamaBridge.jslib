@@ -427,8 +427,8 @@ mergeInto(LibraryManager.library, {
         window.achievementsUnlock(UTF8ToString(options))
     },
 
-    PlaygamaBridgeAchievementsShowNativePopup: function() {
-        window.achievementsShowNativePopup()
+    PlaygamaBridgeAchievementsShowNativePopup: function(options) {
+        window.achievementsShowNativePopup(UTF8ToString(options))
     },
         
     PlaygamaBridgeAchievementsGetList: function(options) {

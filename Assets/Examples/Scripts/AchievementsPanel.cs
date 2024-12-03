@@ -55,7 +55,13 @@ namespace Examples
         {
             _overlay.SetActive(true);
             
-            Bridge.achievements.ShowNativePopup(_ => { _overlay.SetActive(false); });
+            var options = new Dictionary<string, object>();
+            
+            Bridge.achievements.ShowNativePopup(options, (success) =>
+            {
+                Debug.Log($"OnShowNativePopupCompleted, success: {success}");
+                _overlay.SetActive(false);
+            });
         }
         private void OnGetListButtonClicked()
         {

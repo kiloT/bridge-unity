@@ -822,8 +822,12 @@
                     })
             }
 
-            window.achievementsShowNativePopup = function() {
-                bridge.achievements.showNativePopup()
+            window.achievementsShowNativePopup = function(options) {
+                if (options) {
+                    options = JSON.parse(options)
+                }
+                
+                bridge.achievements.showNativePopup(options)
                     .then(() => {
                         sendMessageToUnity('OnAchievementsShowNativePopupCompleted', 'true')
                     })
