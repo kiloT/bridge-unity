@@ -1,5 +1,5 @@
-﻿using System;
-#if UNITY_WEBGL
+﻿#if UNITY_WEBGL
+using System;
 using UnityEngine;
 #if !UNITY_EDITOR
 using System.Runtime.InteropServices;
