@@ -99,7 +99,25 @@ namespace Examples
                     break;
             }
             
-            Bridge.payments.Purchase(options, _ => { _overlay.SetActive(false); });
+            Bridge.payments.Purchase(options, (success, purchase) =>
+            {
+                if (success)
+                {
+                    switch (Bridge.platform.id)
+                    {
+                        case "yandex":
+                            Debug.Log("Product ID: " + purchase["productID"]); 
+                            Debug.Log("Purchase Token: " + purchase["purchaseToken"]);
+                            break;
+                        
+                        case "facebook":
+                            Debug.Log("Product ID: " + purchase["productID"]); 
+                            Debug.Log("Purchase Token: " + purchase["purchaseToken"]);
+                            break;
+                    }
+                }
+                _overlay.SetActive(false);
+            });
         }
 
         private void OnConsumePurchaseButtonClicked()

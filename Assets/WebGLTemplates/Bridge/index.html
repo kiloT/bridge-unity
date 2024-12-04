@@ -159,14 +159,15 @@
                         gameId: '{{{ GAME_DISTRIBUTION_GAME_ID }}}'
                     },
 #endif
-#if VK_PLAY_GAME_ID && VK_PLAY_GAME_ID !== '-' && VK_PLAY_GAME_ID !== ' '
-                    'vk_play': {
-                        gameId: '{{{ VK_PLAY_GAME_ID }}}'
-                    },
-#endif
 #if Y8_GAME_ID && Y8_GAME_ID !== '-' && Y8_GAME_ID !== ' '
                     'y8': {
-                        gameId: '{{{ Y8_GAME_ID }}}'
+                        gameId: '{{{ Y8_GAME_ID }}}',
+#if Y8_ADSENSE_ID && Y8_ADSENSE_ID !== '-' && Y8_ADSENSE_ID !== ' '
+                        adsenseId: '{{{ Y8_ADSENSE_ID }}}',
+#endif
+#if Y8_CHANNEL_ID && Y8_CHANNEL_ID !== '-' && Y8_CHANNEL_ID !== ' '
+                        channelId: '{{{ Y8_CHANNEL_ID }}}',
+#endif
                     },
 #endif
 #if LAGGED_DEV_ID && LAGGED_DEV_ID !== '-' && LAGGED_DEV_ID !== ' ' && LAGGED_PUBLISHER_ID && LAGGED_PUBLISHER_ID !== '-' && LAGGED_PUBLISHER_ID !== ' '
@@ -719,11 +720,19 @@
                 }
                 
                 bridge.payments.purchase(options)
-                    .then(() => {
-                        sendMessageToUnity('OnPaymentsPurchaseCompleted', 'true')
+                    .then(data => {
+                        if (data) {
+                            if (typeof data !== 'string') {
+                                data = JSON.stringify(data)
+                            }
+
+                            sendMessageToUnity('OnPaymentsPurchaseCompleted', data)
+                        } else {
+                            sendMessageToUnity('OnPaymentsPurchaseCompleted', '')
+                        }
                     })
                     .catch(error => {
-                        sendMessageToUnity('OnPaymentsPurchaseCompleted', 'false')
+                        sendMessageToUnity('OnPaymentsPurchaseFailed', '')
                     })
             }
 
@@ -796,6 +805,68 @@
                     })
                     .catch(error => {
                         sendMessageToUnity('OnRemoteConfigGetFailed', '')
+                    })
+            }
+
+            window.getIsAchievementsSupported = function() {
+                return bridge.achievements.isSupported.toString()
+            }
+
+            window.getIsGetAchievementsListSupported = function() {
+                return bridge.achievements.isGetListSupported.toString()
+            }
+
+            window.getIsAchievementsNativePopupSupported = function() {
+                return bridge.achievements.isNativePopupSupported.toString()
+            }
+
+            window.achievementsUnlock = function(options) {
+                if (options) {
+                    options = JSON.parse(options)
+                }
+
+                bridge.achievements.unlock(options)
+                    .then(() => {
+                        sendMessageToUnity('OnAchievementsUnlockCompleted', 'true')
+                    })
+                    .catch(error => {
+                        sendMessageToUnity('OnAchievementsUnlockCompleted', 'false')
+                    })
+            }
+
+            window.achievementsShowNativePopup = function(options) {
+                if (options) {
+                    options = JSON.parse(options)
+                }
+                
+                bridge.achievements.showNativePopup(options)
+                    .then(() => {
+                        sendMessageToUnity('OnAchievementsShowNativePopupCompleted', 'true')
+                    })
+                    .catch(error => {
+                        sendMessageToUnity('OnAchievementsShowNativePopupCompleted', 'false')
+                    })
+            }
+
+            window.achievementsGetList = function(options) {
+                if (options) {
+                    options = JSON.parse(options)
+                }
+
+                bridge.achievements.getList(options)
+                    .then(data => {
+                        if (data) {
+                            if (typeof data !== 'string') {
+                                data = JSON.stringify(data)
+                            }
+
+                            sendMessageToUnity('OnAchievementsGetListCompletedSuccess', data)
+                        } else {
+                            sendMessageToUnity('OnAchievementsGetListCompletedSuccess', '')
+                        }
+                    })
+                    .catch(error => {
+                        sendMessageToUnity('OnAchievementsGetListCompletedFailed', 'false')
                     })
             }
         </script>
