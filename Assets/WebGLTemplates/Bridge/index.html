@@ -716,8 +716,16 @@
                 }
                 
                 bridge.payments.purchase(options)
-                    .then(() => {
-                        sendMessageToUnity('OnPaymentsPurchaseCompleted', 'true')
+                    .then(data => {
+                        if (data) {
+                            if (typeof data !== 'string') {
+                                data = JSON.stringify(data)
+                            }
+
+                            sendMessageToUnity('OnPaymentsPurchaseCompleted', data)
+                        } else {
+                            sendMessageToUnity('OnPaymentsPurchaseCompleted', '')
+                        }
                     })
                     .catch(error => {
                         sendMessageToUnity('OnPaymentsPurchaseFailed', '')
