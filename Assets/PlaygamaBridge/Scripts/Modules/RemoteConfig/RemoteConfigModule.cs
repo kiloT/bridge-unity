@@ -1,8 +1,8 @@
 ﻿#if UNITY_WEBGL
 using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 using UnityEngine;
+using LitJson;
 #if !UNITY_EDITOR
 using Playgama.Common;
 using System.Runtime.InteropServices;
@@ -64,7 +64,7 @@ namespace Playgama.Modules.RemoteConfig
             
             try
             {
-                values = JsonConvert.DeserializeObject<Dictionary<string, string>>(result);
+                values = JsonMapper.ToObject<Dictionary<string, string>>(result);
             }
             catch (Exception e)
             {

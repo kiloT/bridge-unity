@@ -1,7 +1,7 @@
 #if UNITY_WEBGL
 using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using LitJson;
 using UnityEngine;
 #if !UNITY_EDITOR
 using Playgama.Common;
@@ -128,7 +128,7 @@ namespace Playgama.Modules.Achievements
             {
                 try
                 {
-                    achievements = JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(result);
+                    achievements = JsonMapper.ToObject<List<Dictionary<string, string>>>(result);
                 }
                 catch (Exception e)
                 {

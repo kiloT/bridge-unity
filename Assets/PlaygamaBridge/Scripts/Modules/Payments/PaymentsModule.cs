@@ -1,7 +1,7 @@
 ﻿#if UNITY_WEBGL
 using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using LitJson;
 using UnityEngine;
 #if !UNITY_EDITOR
 using Playgama.Common;
@@ -146,7 +146,7 @@ namespace Playgama.Modules.Payments
             {
                 try
                 {
-                    purchase = JsonConvert.DeserializeObject<Dictionary<string, string>>(result);
+                    purchase = JsonMapper.ToObject<Dictionary<string, string>>(result);
                 }
                 catch (Exception e)
                 {
@@ -179,7 +179,7 @@ namespace Playgama.Modules.Payments
             {
                 try
                 {
-                    purchases = JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(result);
+                    purchases = JsonMapper.ToObject<List<Dictionary<string, string>>>(result);
                 }
                 catch (Exception e)
                 {
@@ -205,7 +205,7 @@ namespace Playgama.Modules.Payments
             {
                 try
                 {
-                    items = JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(result);
+                    items = JsonMapper.ToObject<List<Dictionary<string, string>>>(result);
                 }
                 catch (Exception e)
                 {
